@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Давай встречаться?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('photo.jpg'); /* Укажите ваше изображение */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: black;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+            animation: fadeIn 2s ease;
+        }
+        .text {
+            font-size: 36px; /* Размер текста */
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: black; /* Чёрный текст */
+            animation: fadeIn 2s ease;
+        }
+        .buttons {
+            position: absolute;
+            top: 60%; /* Кнопки находятся на 60% от верхней части экрана */
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            opacity: 0;
+            animation: buttonsAnimation 2s ease 1s forwards;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        .yes {
+            background-color: green;
+            color: white;
+        }
+        .no {
+            background-color: red;
+            color: white;
+        }
+        #video-container {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            justify-content: center;
+            align-items: center;
+        }
+        video {
+            max-width: 90%;
+            max-height: 90%;
+            animation: fadeIn 2s ease;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        @keyframes buttonsAnimation {
+            from {
+                opacity: 0;
+                transform: translateY(50px); /* Начало анимации с 50px снизу */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0); /* Конец анимации в центре */
+            }
+        }
+        @keyframes textFade {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes flashRed {
+            0% {
+                background-color: transparent;
+            }
+            50% {
+                background-color: red;
+            }
+            100% {
+                background-color: transparent;
+            }
+        }
+        #crack-effect {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent, rgba(255, 0, 0, 0.8));
+            animation: flashRed 0.5s ease infinite alternate;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="main-text" class="text">Давай встречаться?</h1>
+        <div class="buttons">
+            <button class="yes" onclick="handleYes()">Да</button>
+            <button class="no" onclick="handleNo()">Нет</button>
+        </div>
+    </div>
+
+    <div id="crack-effect"></div>
+
+    <div id="video-container">
+        <video controls autoplay>
+            <source src="video.mp4" type="video/mp4">
+            Ваш браузер не поддерживает воспроизведение видео.
+        </video>
+    </div>
+
+    <script>
+        function handleYes() {
+            const mainText = document.querySelector('#main-text');
+            const buttons = document.querySelector('.buttons');
+            
+            mainText.innerText = ':)';
+            buttons.style.display = 'none';
+        }
+
+        function handleNo() {
+            const mainText = document.querySelector('#main-text');
+            const buttons = document.querySelector('.buttons');
+            const crackEffect = document.querySelector('#crack-effect');
+
+            buttons.style.opacity = 0; // Убираем кнопки плавно
+            buttons.style.pointerEvents = 'none'; // Отключаем клики
+            
+            setTimeout(() => {
+                mainText.innerText = 'Зря...';
+                mainText.style.color = 'red';
+                mainText.style.animation = 'textFade 1s ease';
+            }, 500);
+
+            setTimeout(() => {
+                crackEffect.style.display = 'block';
+            }, 2000); // Показываем эффект раскалывания через 2 секунды
+
+            setTimeout(() => {
+                document.body.style.background = 'black';
+                document.querySelector('.container').style.display = 'none';
+                crackEffect.style.display = 'none';
+                const videoContainer = document.querySelector('#video-container');
+                videoContainer.style.display = 'flex';
+                videoContainer.style.animation = 'fadeIn 2s ease';
+            }, 3000); // Показываем видео через 3 секунды
+        }
+    </script>
+</body>
+</html>
