@@ -133,7 +133,7 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="main-text" class="text">Давай встречаться?)</h1>
+        <h1 id="main-text" class="text">Давай встречаться?</h1>
     </div>
 
     <div id="crack-effect"></div>
@@ -144,7 +144,7 @@
     </div>
 
     <div id="video-container">
-        <video autoplay loop>
+        <video id="video" autoplay loop>
             <source src="video.mp4" type="video/mp4">
             Ваш браузер не поддерживает воспроизведение видео.
         </video>
@@ -170,6 +170,8 @@
             const mainText = document.querySelector('#main-text');
             const buttons = document.querySelector('.buttons');
             const crackEffect = document.querySelector('#crack-effect');
+            const videoContainer = document.querySelector('#video-container');
+            const video = document.querySelector('#video');
 
             buttons.style.opacity = 0; // Убираем кнопки плавно
             buttons.style.pointerEvents = 'none'; // Отключаем клики
@@ -188,8 +190,8 @@
                 document.body.style.background = 'black';
                 document.querySelector('.container').style.display = 'none';
                 crackEffect.style.display = 'none';
-                const videoContainer = document.querySelector('#video-container');
                 videoContainer.style.display = 'flex'; // Мгновенно показываем видео
+                video.play(); // Начинаем воспроизведение видео
             }, 3000); // Показываем видео через 3 секунды
         }
     </script>
