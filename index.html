@@ -62,7 +62,7 @@
             color: white;
         }
         #video-container {
-            display: none;
+            display: none; /* Видео скрыто по умолчанию */
             position: absolute;
             top: 0;
             left: 0;
@@ -189,8 +189,7 @@
                 document.querySelector('.container').style.display = 'none';
                 crackEffect.style.display = 'none';
                 const videoContainer = document.querySelector('#video-container');
-                videoContainer.style.display = 'flex';
-                videoContainer.style.animation = 'fadeIn 2s ease';
+                videoContainer.style.display = 'flex'; // Мгновенно показываем видео
             }, 3000); // Показываем видео через 3 секунды
         }
     </script>
