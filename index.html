@@ -40,7 +40,6 @@
             display: flex;
             justify-content: center;
             opacity: 0;
-            animation: buttonsAnimation 2s ease 1s forwards;
         }
         button {
             font-size: 18px;
@@ -135,13 +134,14 @@
 <body>
     <div class="container">
         <h1 id="main-text" class="text">Давай встречаться?</h1>
-        <div class="buttons">
-            <button class="yes" onclick="handleYes()">Да</button>
-            <button class="no" onclick="handleNo()">Нет</button>
-        </div>
     </div>
 
     <div id="crack-effect"></div>
+
+    <div class="buttons">
+        <button class="yes" onclick="handleYes()">Да</button>
+        <button class="no" onclick="handleNo()">Нет</button>
+    </div>
 
     <div id="video-container">
         <video controls autoplay>
@@ -151,6 +151,13 @@
     </div>
 
     <script>
+        // Показать кнопки через 3 секунды после анимации текста
+        setTimeout(() => {
+            const buttons = document.querySelector('.buttons');
+            buttons.style.opacity = 1;
+            buttons.style.animation = 'buttonsAnimation 1s ease forwards';
+        }, 3000); // Показать кнопки через 3 секунды
+
         function handleYes() {
             const mainText = document.querySelector('#main-text');
             const buttons = document.querySelector('.buttons');
